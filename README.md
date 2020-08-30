@@ -165,6 +165,18 @@ Microservices project
 * Re-run `./make_prediction.sh` - Success
 * `docker login`
 * Update 'upload_docker.sh'
-* 
+* Updated `run_kubernetes.sh`
+  * Note, the port forwarding command at the end of the script fails as it executes too soon, need some kind of delay or checked loop to wait until the pod has been created and started
+  * When pod started, running port forwarding command manually gives a permission denied error : https://pastebin.pl/view/1243bce3
+  * Could be that something else already listening on 80... 
+    * Changed to 8000:80
+    * (.devops) [ec2-user@ip-172-31-2-30 project-ml-microservice-kubernetes]$ `kubectl port-forward udacity-project4 8000:80`
+    * Started successfully
+    * Update make_prediction.sh to poll port 8000 instead of 80
+    * Successfully made prediction.
+* Deleted minikube cluster with `minikube delete`
 
-Next step - edit `run_kubernetes.sh`
+    
+  
+  
+  
