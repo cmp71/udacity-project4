@@ -91,6 +91,8 @@ Microservices project
 ## Attempt #4. MacBook Air
 * macOS Catalina Version 10.15.6
 * List of packages installed on this MacBook https://pastebin.pl/view/61f2348c
+* git clone
+* Create python env
 * ➜  project-ml-microservice-kubernetes git:(master) `which python3`
 * _/usr/bin/python3_
 * ➜  project-ml-microservice-kubernetes git:(master) `python3 --version`
@@ -98,3 +100,12 @@ Microservices project
 * `make install` errors
   * https://pastebin.pl/view/4a5b9db6
 
+## Attempt #5. Windows 10 Laptop
+* Windows 10 Home, OS Build 19041.450
+* List of installed programs: https://pastebin.pl/view/69b3af5b
+* Using git bash, git clone
+* python cannot be run from command line
+  * chris@HP-ENVYD6 MINGW64 ~/DevOps_Microservices/project-ml-microservice-kubernetes (master)
+  * $ `python3 -m venv ~/.devops`
+  * _bash: /c/Users/chris/AppData/Local/Microsoft/WindowsApps/python3: Permission denied_
+* Tried a variety of fixes suggested on the internet (most involved reconfiguring $PATH) to no avail.
