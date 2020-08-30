@@ -167,3 +167,4 @@ Microservices project
 * Update 'upload_docker.sh'
 * 
 
+Next step - edit `run_kubernetes.sh`
