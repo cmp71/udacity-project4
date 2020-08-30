@@ -99,6 +99,19 @@ Microservices project
 * _Python 3.8.2_
 * `make install` errors
   * https://pastebin.pl/view/4a5b9db6
+* Edited requirements.txt to remove all the hardcoded version numbers
+  * This time `make install` completed successfully
+* Installed pylint with `pip install pylint`
+* Linting of the supplied app.py generates issues:
+  * https://pastebin.pl/view/7661b074
+  * Fixed joblib import issue
+    * Replaced `from sklearn.externals import joblib` with `import joblib`
+  * Fixed f-string issue
+    * Replaced `html = f"<h3>Sklearn Prediction Home</h3>"` with `html = "<h3>Sklearn Prediction Home</h3>"`
+* Updated Dockerfile and linted
+* Updated run_docker.sh. Python errors when running docker run:
+  * https://pastebin.pl/view/d2f593f8
+  * This appears to be something to do with incompatible versions of scikit-learn which is beyond my knowledge to fix (and should be outside the scope of this course)
 
 ## Attempt #5. Windows 10 Laptop
 * Windows 10 Home, OS Build 19041.450
@@ -109,3 +122,48 @@ Microservices project
   * $ `python3 -m venv ~/.devops`
   * _bash: /c/Users/chris/AppData/Local/Microsoft/WindowsApps/python3: Permission denied_
 * Tried a variety of fixes suggested on the internet (most involved reconfiguring $PATH) to no avail.
+
+## Attempt #6. AWS EC2 Linux
+* Create instance with Amazon Linux 2 AMI, t2.large (2 vCPUs, 8 GiB), raised disk from 8 GiB to 16 GiB
+* `sudo yum update`
+* Install git `sudo yum install git`
+* git clone
+* Install python3 `sudo yum install python3 -y`
+* Create python env
+* make install
+* Install docker `sudo amazon-linux-extras install docker`
+  * (.devops) [ec2-user@ip-172-31-2-30 project-ml-microservice-kubernetes]$ `docker --version`
+  * _Docker version 19.03.6-ce, build 369ce74_
+* Start docker daemon `sudo service docker start`
+* Add permission for docker `sudo usermod -a -G docker ec2-user`
+* Install hadolint via docker
+  * `docker run --rm -i hadolint/hadolint < Dockerfile`
+  * Replaced hadolint line in Makefile with the above
+* Install pylint `pip install pylint`
+* `make lint` errors on app.py, only the f-string issue previously seen. Fixed as before.
+* Install kubectl
+  * `curl -LO "https://storage.googleapis.com/kubernetes-release/release/$(curl -s https://storage.googleapis.com/kubernetes-release/release/stable.txt)/bin/linux/amd64/kubectl"`
+  * `chmod +x ./kubectl`
+  * `sudo mv ./kubectl /usr/local/bin/kubectl`
+  * `kubectl version --client`
+    * _Client Version: version.Info{Major:"1", Minor:"19", GitVersion:"v1.19.0", GitCommit:"e19964183377d0ec2052d1f1fa930c4d7575bd50", GitTreeState:"clean", BuildDate:"2020-08-26T14:30:33Z", GoVersion:"go1.15", Compiler:"gc", Platform:"linux/amd64"}_
+* Install minikube
+  * `curl -Lo minikube https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64`
+  * `chmod +x minikube`
+  * `sudo mkdir -p /usr/local/bin/`
+  * `sudo install minikube /usr/local/bin/`
+* Start minikube
+  * `minikube start --driver=docker`
+    * Success: https://pastebin.pl/view/7a82fb3d
+* Update Dockerfile: https://pastebin.pl/view/ed1c0b2b
+* Update run_docker.sh: https://pastebin.pl/view/227bfc8f
+  * Success. App is waiting for input
+* Edit make_prediction.sh, change PORT to 80
+* `./make_prediction.sh` - Success
+* Edit make_prediction.sh to add extra logging. Lint: success
+* Re-run `./run_docker.sh` to rebuild image with new app.py
+* Re-run `./make_prediction.sh` - Success
+* `docker login`
+* Update 'upload_docker.sh'
+* 
+
