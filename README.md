@@ -87,3 +87,14 @@ Microservices project
   * `minikube start --driver=docker`
     * Fails, "no space left on device"
       * https://pastebin.pl/view/69d885c4
+
+## Attempt #4. MacBook Air
+* macOS Catalina Version 10.15.6
+* List of packages installed on this MacBook https://pastebin.pl/view/61f2348c
+* ➜  project-ml-microservice-kubernetes git:(master) `which python3`
+* _/usr/bin/python3_
+* ➜  project-ml-microservice-kubernetes git:(master) `python3 --version`
+* _Python 3.8.2_
+* `make install` errors
+  * https://pastebin.pl/view/4a5b9db6
+
