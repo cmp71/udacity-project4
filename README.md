@@ -1,7 +1,7 @@
 # udacity-project4
 Microservices project
 
-# Attempt #1. AWS Cloud 9
+## Attempt #1. AWS Cloud 9
 * Create environment, t2.micro (1 GiB RAM + 1 vCPU), Amazon Linux
 * git clone
 * Create python env
@@ -29,7 +29,7 @@ Microservices project
   * Fails, not enough vCPU's
     * https://pastebin.pl/view/b3d73d98
       
-# Attempt #2. AWS Cloud 9
+## Attempt #2. AWS Cloud 9
 * Create environment, m5.large (8 GiB RAM + 2 vCPU), Amazon Linux
 * git clone
 * Create python env
@@ -60,7 +60,7 @@ Microservices project
     * _(.devops) ec2-user:~/environment/DevOps_Microservices/project-ml-microservice-kubernetes (master) $ sudo growpart /dev/nvme0n1 1_
     * _NOCHANGE: disk=/dev/nvme0n1 partition=1: size=20967390, it cannot be grown_
 
-# Attempt #3. AWS Cloud 9
+## Attempt #3. AWS Cloud 9
 * Create environment, m5.large (8 GiB RAM + 2 vCPU), Ubuntu Server 18.04 LTS
 * git clone
 * Create python env
